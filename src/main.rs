@@ -96,7 +96,7 @@
 //! Generated 10 nodes.
 //! Solution is ["Right", "Down", "Right"]
 //! ```
-//! ### Case 4:
+//! ### Case 4: (No solution)
 //! ```
 //! Initial State:             Goal State:
 //! -------------             -------------
@@ -223,7 +223,6 @@ impl Problem {
                             let (new_x, new_y) = find(&new, g);
                             cost += isize::abs(goal_x - new_x);
                             cost += isize::abs(goal_y - new_y);
-                            // cost = (cost / 2) as isize; 
                         }
                     } else {
                         for (x, y) in self.goal_state.iter().zip($new_state.iter()) {
