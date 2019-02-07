@@ -215,8 +215,15 @@ impl Problem {
                 if !self.visited.contains(&$new_state) {
                     let mut cost = 0;
                     if self.heuristic == "Manhattan" {
-                        for (x, y) in self.goal_state.iter().zip($new_state.iter()) {
-                            cost += isize::abs(x - y);
+                        let new = vec![&self.state.is[0..3], &self.state.is[3..6], &self.state.is[6..9]];
+                        let goal = vec![&self.goal_state[0..3], &self.goal_state[3..6], &self.goal_state[6..9]];
+
+                        for g in self.goal_state.iter() {
+                            let (goal_x, goal_y) = find(&goal, g);
+                            let (new_x, new_y) = find(&new, g);
+                            cost += isize::abs(goal_x - new_x);
+                            cost += isize::abs(goal_y - new_y);
+                            // cost = (cost / 2) as isize; 
                         }
                     } else {
                         for (x, y) in self.goal_state.iter().zip($new_state.iter()) {
@@ -305,10 +312,12 @@ impl Problem {
 
     /// Traces the path from goal state to root and reverses it.
     pub fn trace_soln(&self) {
-        let mut soln = vec![];
+        let mut soln: Vec<String> = vec![];
         let mut parent = self.state.parent.clone();
         
         while let Some(p) = parent {
+            // println!("{:?}", p);
+            // println!("Cost: {}", p.cost);
             soln.push((*p).kind.clone());
             parent = (*p).parent.clone();
         }
@@ -385,7 +394,22 @@ fn main() {
 
 }
 
-
+/// Finds the 2d 3x3 vector indices of a number in a 1d vector of isize. 
+pub fn find(_vec: &Vec<&[isize]>, r: &isize) -> (isize, isize) {
+    let mut x = 0;
+    let mut y = 0;
+    for (i, row) in _vec.iter().enumerate() {
+        if row.contains(&r) {
+            x = i;
+        }
+        for (j, val) in row.iter().enumerate() {
+            if *val == *r {
+                y = j;
+            }
+        }
+    }
+    (x as isize, y as isize)
+}
 
 /// Implementing this allows us to use State instances inside print statements
 impl fmt::Debug for State {

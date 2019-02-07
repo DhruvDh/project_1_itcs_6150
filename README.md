@@ -16,7 +16,7 @@ initial                                                      goal
 ## Problem Formulation
 
 - **Goal**: Pieces end up in locations as described by the goal state.
-- **States**: All possible permutaions of the puzzle.
+- **States**: All possible permutations of the puzzle.
 - **Actions**: Move the blank Up, Down, Left, or Right.
 - **Performance Measure**: Number of total moves in the solution, if the solution exists.
 
