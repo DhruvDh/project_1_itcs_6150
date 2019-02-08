@@ -23,7 +23,7 @@ First install `rustup` from [here](https://rustup.rs/). `rustup` is the toolchai
 
 Once `rustup` is installed, execute the following commands to run the code -
 
-```
+```bash
 git clone https://github.com/DhruvDh/project_1_itcs_6150.git
 cd project_1_itcs_6156 && cargo run
 ```
