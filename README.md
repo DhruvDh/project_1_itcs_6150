@@ -88,9 +88,9 @@ Current State:             Goal State:
 | 6 | 8 | 0 |             | 7 | 5 | 0 |
 -------------             -------------
 Solving using Hamming distance...
-Expanded 27 nodes.
-Generated 47 nodes.
-Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down"]
+Expanded 38 nodes.
+Generated 63 nodes.
+Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down", "Right"]
 ```
 
 ### Case 2:
@@ -114,9 +114,9 @@ Current State:             Goal State:
 | 7 | 5 | 0 |             | 7 | 5 | 6 |
 -------------             -------------
 Solving using Hamming distance...
-Expanded 8 nodes.
-Generated 16 nodes.
-Solution is ["Up", "Left", "Up", "Left", "Down"]
+Expanded 16 nodes.
+Generated 28 nodes.
+Solution is ["Up", "Left", "Up", "Left", "Down", "Right"]
 ```
 
 ### Case 3:
@@ -140,9 +140,9 @@ Current State:             Goal State:
 | 7 | 8 | 6 |             | 7 | 8 | 0 |
 -------------             -------------
 Solving using Hamming distance...
-Expanded 5 nodes.
-Generated 11 nodes.
-Solution is ["Right", "Down", "Right"]
+Expanded 11 nodes.
+Generated 20 nodes.
+Solution is ["Right", "Down", "Right", "Down"]
 ```
 
 ### Case 4: (No solution)

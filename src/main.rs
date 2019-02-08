@@ -44,11 +44,13 @@
 //! | 6 | 8 | 0 |             | 7 | 5 | 0 |
 //! -------------             -------------
 //! Solving using Hamming distance...
-//! Expanded 27 nodes.
-//! Generated 47 nodes.
-//! Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down"]
+//! Expanded 38 nodes.
+//! Generated 63 nodes.
+//! Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down", "Right"]
 //! ```
+//! 
 //! ### Case 2:
+//! 
 //! ```
 //! Current State:             Goal State:
 //! -------------             -------------
@@ -68,11 +70,13 @@
 //! | 7 | 5 | 0 |             | 7 | 5 | 6 |
 //! -------------             -------------
 //! Solving using Hamming distance...
-//! Expanded 8 nodes.
-//! Generated 16 nodes.
-//! Solution is ["Up", "Left", "Up", "Left", "Down"]
+//! Expanded 16 nodes.
+//! Generated 28 nodes.
+//! Solution is ["Up", "Left", "Up", "Left", "Down", "Right"]
 //! ```
+//! 
 //! ### Case 3:
+//! 
 //! ```
 //! Current State:             Goal State:
 //! -------------             -------------
@@ -92,11 +96,13 @@
 //! | 7 | 8 | 6 |             | 7 | 8 | 0 |
 //! -------------             -------------
 //! Solving using Hamming distance...
-//! Expanded 5 nodes.
-//! Generated 11 nodes.
-//! Solution is ["Right", "Down", "Right"]
+//! Expanded 11 nodes.
+//! Generated 20 nodes.
+//! Solution is ["Right", "Down", "Right", "Down"]
 //! ```
+//! 
 //! ### Case 4: (No solution)
+//! 
 //! ```
 //! Current State:             Goal State:
 //! -------------             -------------
@@ -215,21 +221,17 @@ impl Problem {
             ($kind:expr, $new_state:ident) => {
                 if !self.visited.contains(&$new_state) {
                     let mut cost = 0;
-                    if self.heuristic == "Manhattan" {
-                        let new = vec![&self.state.is[0..3], &self.state.is[3..6], &self.state.is[6..9]].clone();
-                        let goal_clone = self.goal_state.clone();
-                        let goal = vec![&goal_clone[0..3], &goal_clone[3..6], &goal_clone[6..9]];
+                    let new = vec![&self.state.is[0..3], &self.state.is[3..6], &self.state.is[6..9]].clone();
+                    let goal = vec![&self.goal_state[0..3], &self.goal_state[3..6], &self.goal_state[6..9]];
 
-                        for g in self.goal_state.iter() {
+                    for g in self.goal_state.iter() {
                             let (goal_x, goal_y) = find(&goal, g);
                             let (new_x, new_y) = find(&new, g);
-                            cost += isize::abs(goal_x - new_x);
-                            cost += isize::abs(goal_y - new_y);
-                        }
-                    } else {
-                        for (x, y) in self.goal_state.iter().zip($new_state.iter()) {
-                            cost += isize::abs(x - y);
-                        }
+                            cost += if self.heuristic == "Manhattan" {
+                                isize::abs(goal_x - new_x) + isize::abs(goal_y - new_y)
+                            } else {
+                                if goal_x == new_x && goal_y == new_y {0} else {1}
+                            };
                     }
 
                     let state = State {
