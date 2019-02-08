@@ -70,8 +70,11 @@ impl Problem {
         self.no_expanded += 1; // incrementing
 
         macro_rules! do_the_needful {
-            ($kind:expr, $new_state:ident) => {
-                if !self.visited.contains(&$new_state) {
+            ($new_loc:expr, $kind:expr) => {
+                let mut new_state = self.state.is.clone();
+                new_state.swap(loc, $new_loc);
+
+                if !self.visited.contains(&new_state) {
                     let mut cost = 0;
                     let new = vec![&self.state.is[0..3], &self.state.is[3..6], &self.state.is[6..9]].clone();
                     let goal = vec![&self.goal_state[0..3], &self.goal_state[3..6], &self.goal_state[6..9]];
@@ -87,7 +90,7 @@ impl Problem {
                     }
 
                     let state = State {
-                        is: $new_state,
+                        is: new_state,
                         cost: self.state.g + 1 + cost,
                         g: self.state.g + 1,
                         h: cost,
@@ -102,38 +105,22 @@ impl Problem {
 
         match loc { // going up
             0...2 => (),
-            i => {
-                let mut new_state = self.state.is.clone();
-                new_state.swap(loc, i - 3);
-                do_the_needful!("Up", new_state);
-            }
+            i => {do_the_needful!(i - 3, "Up");}
         };
 
         match loc { // going down
             6...8 => (),
-            i => {
-                let mut new_state = self.state.is.clone();
-                new_state.swap(loc, i + 3);
-                do_the_needful!("Down", new_state);
-            }
+            i => {do_the_needful!(i + 3, "Down");}
         };
 
         match loc {
             0 | 3 | 6 => (), // going left
-            i => {
-                let mut new_state = self.state.is.clone();
-                new_state.swap(loc, i - 1);
-                do_the_needful!("Left", new_state);
-            }
+            i => {do_the_needful!(i - 1, "Left");}
         };
 
         match loc { // going right
             2 | 5 | 8 => (),
-            i => {
-                let mut new_state = self.state.is.clone();
-                new_state.swap(loc, i + 1);
-                do_the_needful!("Right", new_state);
-            }
+            i => {do_the_needful!(i + 1, "Right");}
         };
 
         possible_states // returning the vector
