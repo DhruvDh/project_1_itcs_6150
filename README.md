@@ -41,7 +41,7 @@ initial                                                      goal
 
 ## How to install and run
 
-First install `rustup` from [here](https://rustup.rs/). `rustup` is the toolchain for a language called `rust`, which this project is written it. Installing it will allow you to run my program.
+First install `rustup` from [here](https://rustup.rs/). `rustup` is the toolchain for a language called `rust`, which is what this project is written in. Installing it will allow you to run my program.
 
 > If you don't want to install it, I've also included a Windows executable that can be run without any dependencies. Look for `project_1.exe` in the root folder.
 
