@@ -1,5 +1,29 @@
 # 8 Puzzle Problem
 
+## Table of Contents
+
+- [8 Puzzle Problem](#8-puzzle-problem)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [How to install and run](#how-to-install-and-run)
+  - [Problem Formulation](#problem-formulation)
+  - [Problem Structure](#problem-structure)
+  - [Global Variables](#global-variables)
+  - [Structs](#structs)
+    - [`State`](#state)
+      - [Properties](#properties)
+      - [Further details](#further-details)
+      - [Methods](#methods)
+    - [`Problem`](#problem)
+        - [Properties](#properties-1)
+      - [Methods](#methods-1)
+  - [Examples](#examples)
+    - [Case 1:](#case-1)
+    - [Case 2:](#case-2)
+    - [Case 3:](#case-3)
+    - [Case 4: (No solution)](#case-4-no-solution)
+  - [Source Code](#source-code)
+
 ## Introduction
 
 The 8-puzzle problem is a puzzle invented and popularized by Noyes Palmer Chapman in the 1870s.
