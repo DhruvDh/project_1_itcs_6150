@@ -1,4 +1,4 @@
-#![doc(html_root_url = "https://docs.rs/crate/project_1_itcs_6156/0.1.2")]
+#![doc(html_root_url = "https://docs.rs/crate/project_1_itcs_6156/0.1.3")]
 //! # 8 Puzzle Problem
 //! ## Introduction
 //! The 8-puzzle problem is a puzzle invented and popularized by Noyes Palmer Chapman in the 1870s.
