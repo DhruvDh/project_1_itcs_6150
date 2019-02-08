@@ -492,22 +492,4 @@ pub fn find(_vec: &Vec<&[isize]>, r: &isize) -> (isize, isize) {
     }
     (x as isize, y as isize)
 }
-
-impl fmt::Debug for State {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "-------------\n| {} | {} | {} |\n| {} | {} | {} |\n| {} | {} | {} |\n-------------",
-        self.is[0], self.is[1], self.is[2],
-        self.is[3], self.is[4], self.is[5],
-        self.is[6], self.is[7], self.is[8])
-    }
-}
-
-impl fmt::Debug for Problem {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Current State:             Goal State:\n-------------             -------------\n| {} | {} | {} |             | {} | {} | {} | \n| {} | {} | {} |             | {} | {} | {} |\n| {} | {} | {} |             | {} | {} | {} |\n-------------             -------------",
-        self.state.is[0], self.state.is[1], self.state.is[2], self.goal_state[0], self.goal_state[1], self.goal_state[2],
-        self.state.is[3], self.state.is[4], self.state.is[5], self.goal_state[3], self.goal_state[4], self.goal_state[5],
-        self.state.is[6], self.state.is[7], self.state.is[8], self.goal_state[6], self.goal_state[7], self.goal_state[8])
-    }
-}
 ```
