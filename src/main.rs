@@ -26,86 +26,87 @@
 //! ## Examples
 //! ### Case 1:
 //! ```
-//! Initial State:             Goal State:
+//! Current State:             Goal State:
 //! -------------             -------------
 //! | 1 | 2 | 3 |             | 1 | 2 | 3 |
 //! | 7 | 4 | 5 |             | 8 | 6 | 4 |
 //! | 6 | 8 | 0 |             | 7 | 5 | 0 |
 //! -------------             -------------
 //! Solving using Manhattan distance...
-//! Expanded 27 nodes.
-//! Generated 47 nodes.
-//! Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down"]
-
-//! Initial State:             Goal State:
+//! Expanded 19 nodes.
+//! Generated 33 nodes.
+//! Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down", "Right"]
+//! 
+//! Current State:             Goal State:
 //! -------------             -------------
 //! | 1 | 2 | 3 |             | 1 | 2 | 3 |
 //! | 7 | 4 | 5 |             | 8 | 6 | 4 |
 //! | 6 | 8 | 0 |             | 7 | 5 | 0 |
 //! -------------             -------------
 //! Solving using Hamming distance...
-//! Expanded 18 nodes.
-//! Generated 34 nodes.
+//! Expanded 27 nodes.
+//! Generated 47 nodes.
 //! Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down"]
 //! ```
 //! ### Case 2:
 //! ```
-//!Initial State:             Goal State:
+//! Current State:             Goal State:
 //! -------------             -------------
 //! | 2 | 8 | 1 |             | 3 | 2 | 1 |
 //! | 3 | 4 | 6 |             | 8 | 0 | 4 |
 //! | 7 | 5 | 0 |             | 7 | 5 | 6 |
 //! -------------             -------------
 //! Solving using Manhattan distance...
+//! Expanded 14 nodes.
+//! Generated 26 nodes.
+//! Solution is ["Up", "Left", "Up", "Left", "Down", "Right"]
+//! 
+//! Current State:             Goal State:
+//! -------------             -------------
+//! | 2 | 8 | 1 |             | 3 | 2 | 1 |
+//! | 3 | 4 | 6 |             | 8 | 0 | 4 |
+//! | 7 | 5 | 0 |             | 7 | 5 | 6 |
+//! -------------             -------------
+//! Solving using Hamming distance...
 //! Expanded 8 nodes.
 //! Generated 16 nodes.
 //! Solution is ["Up", "Left", "Up", "Left", "Down"]
-//! 
-//! Initial State:             Goal State:
-//! -------------             -------------
-//! | 2 | 8 | 1 |             | 3 | 2 | 1 |
-//! | 3 | 4 | 6 |             | 8 | 0 | 4 |
-//! | 7 | 5 | 0 |             | 7 | 5 | 6 |
-//! -------------             -------------
-//! Solving using Hamming distance...
-//! Expanded 7 nodes.
-//! Generated 15 nodes.
-//! Solution is ["Up", "Left", "Up", "Left", "Down"] 
 //! ```
 //! ### Case 3:
 //! ```
-//! Initial State:             Goal State:
+//! Current State:             Goal State:
 //! -------------             -------------
 //! | 0 | 1 | 3 |             | 1 | 2 | 3 |
 //! | 4 | 2 | 5 |             | 4 | 5 | 6 |
 //! | 7 | 8 | 6 |             | 7 | 8 | 0 |
 //! -------------             -------------
 //! Solving using Manhattan distance...
-//! Expanded 5 nodes.
-//! Generated 11 nodes.
-//! Solution is ["Right", "Down", "Right"]
+//! Expanded 9 nodes.
+//! Generated 19 nodes.
+//! Solution is ["Right", "Down", "Right", "Down"]
 //! 
-//! Initial State:             Goal State:
+//! Current State:             Goal State:
 //! -------------             -------------
 //! | 0 | 1 | 3 |             | 1 | 2 | 3 |
 //! | 4 | 2 | 5 |             | 4 | 5 | 6 |
 //! | 7 | 8 | 6 |             | 7 | 8 | 0 |
 //! -------------             -------------
 //! Solving using Hamming distance...
-//! Expanded 4 nodes.
-//! Generated 10 nodes.
+//! Expanded 5 nodes.
+//! Generated 11 nodes.
 //! Solution is ["Right", "Down", "Right"]
 //! ```
 //! ### Case 4: (No solution)
 //! ```
-//! Initial State:             Goal State:
+//! Current State:             Goal State:
 //! -------------             -------------
 //! | 0 | 3 | 1 |             | 1 | 2 | 3 |
 //! | 4 | 2 | 5 |             | 4 | 5 | 6 |
 //! | 7 | 8 | 6 |             | 7 | 8 | 0 |
 //! -------------             -------------
 //! Solving using Manhattan distance...
-//! thread "main" panicked at "Reached a dead end.", src\libcore\option.rs:1038:5
+//! thread 'main' panicked at 'Reached a dead end.', src\libcore\option.rs:1038:5
+//! note: Run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
 //! error: process didn't exit successfully: `target\debug\project_1.exe` (exit code: 101)
 //! ```
 
@@ -215,8 +216,9 @@ impl Problem {
                 if !self.visited.contains(&$new_state) {
                     let mut cost = 0;
                     if self.heuristic == "Manhattan" {
-                        let new = vec![&self.state.is[0..3], &self.state.is[3..6], &self.state.is[6..9]];
-                        let goal = vec![&self.goal_state[0..3], &self.goal_state[3..6], &self.goal_state[6..9]];
+                        let new = vec![&self.state.is[0..3], &self.state.is[3..6], &self.state.is[6..9]].clone();
+                        let goal_clone = self.goal_state.clone();
+                        let goal = vec![&goal_clone[0..3], &goal_clone[3..6], &goal_clone[6..9]];
 
                         for g in self.goal_state.iter() {
                             let (goal_x, goal_y) = find(&goal, g);
@@ -226,7 +228,7 @@ impl Problem {
                         }
                     } else {
                         for (x, y) in self.goal_state.iter().zip($new_state.iter()) {
-                            cost += if x == y {0} else {1};
+                            cost += isize::abs(x - y);
                         }
                     }
 
@@ -294,7 +296,6 @@ impl Problem {
 
             self.under_consideration
                 .append(&mut BinaryHeap::from(possible_states));
-
             let next_state = self.under_consideration.pop().expect("Reached a dead end.");
             self.visited.insert(next_state.is.clone());
             self.state = next_state;
@@ -422,9 +423,9 @@ impl fmt::Debug for State {
 
 impl fmt::Debug for Problem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Initial State:             Goal State:\n-------------             -------------\n| {} | {} | {} |             | {} | {} | {} |\n| {} | {} | {} |             | {} | {} | {} |\n| {} | {} | {} |             | {} | {} | {} |\n-------------             -------------", 
+        write!(f, "Current State:             Goal State:\n-------------             -------------\n| {} | {} | {} |             | {} | {} | {} | \n| {} | {} | {} |             | {} | {} | {} |\n| {} | {} | {} |             | {} | {} | {} |\n-------------             -------------", 
         self.state.is[0], self.state.is[1], self.state.is[2], self.goal_state[0], self.goal_state[1], self.goal_state[2], 
-        self.state.is[3], self.state.is[4], self.state.is[5], self.goal_state[3], self.goal_state[4], self.goal_state[5], 
+        self.state.is[3], self.state.is[4], self.state.is[5], self.goal_state[3], self.goal_state[4], self.goal_state[5],
         self.state.is[6], self.state.is[7], self.state.is[8], self.goal_state[6], self.goal_state[7], self.goal_state[8])
     }
 }

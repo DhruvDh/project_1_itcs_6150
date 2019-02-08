@@ -65,95 +65,97 @@ A struct to encapsulate information about the current problem.
 - `no_expanded`: A counter to keep track of number of nodes expanded.
 - `heuristic`: A string describing the current heuristic being used.
 
-## Examples
+# Examples
 
 ### Case 1:
 
 ```
-Initial State:             Goal State:
+Current State:             Goal State:
 -------------             -------------
 | 1 | 2 | 3 |             | 1 | 2 | 3 |
 | 7 | 4 | 5 |             | 8 | 6 | 4 |
 | 6 | 8 | 0 |             | 7 | 5 | 0 |
 -------------             -------------
 Solving using Manhattan distance...
-Expanded 27 nodes.
-Generated 47 nodes.
-Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down"]
-Initial State:             Goal State:
+Expanded 19 nodes.
+Generated 33 nodes.
+Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down", "Right"]
+
+Current State:             Goal State:
 -------------             -------------
 | 1 | 2 | 3 |             | 1 | 2 | 3 |
 | 7 | 4 | 5 |             | 8 | 6 | 4 |
 | 6 | 8 | 0 |             | 7 | 5 | 0 |
 -------------             -------------
 Solving using Hamming distance...
-Expanded 18 nodes.
-Generated 34 nodes.
+Expanded 27 nodes.
+Generated 47 nodes.
 Solution is ["Up", "Left", "Down", "Left", "Up", "Right", "Down"]
 ```
 
 ### Case 2:
 
 ```
-nitial State:             Goal State:
+Current State:             Goal State:
 -------------             -------------
 | 2 | 8 | 1 |             | 3 | 2 | 1 |
 | 3 | 4 | 6 |             | 8 | 0 | 4 |
 | 7 | 5 | 0 |             | 7 | 5 | 6 |
 -------------             -------------
 Solving using Manhattan distance...
-Expanded 8 nodes.
-Generated 16 nodes.
-Solution is ["Up", "Left", "Up", "Left", "Down"]
+Expanded 14 nodes.
+Generated 26 nodes.
+Solution is ["Up", "Left", "Up", "Left", "Down", "Right"]
 
-Initial State:             Goal State:
+Current State:             Goal State:
 -------------             -------------
 | 2 | 8 | 1 |             | 3 | 2 | 1 |
 | 3 | 4 | 6 |             | 8 | 0 | 4 |
 | 7 | 5 | 0 |             | 7 | 5 | 6 |
 -------------             -------------
 Solving using Hamming distance...
-Expanded 7 nodes.
-Generated 15 nodes.
+Expanded 8 nodes.
+Generated 16 nodes.
 Solution is ["Up", "Left", "Up", "Left", "Down"]
 ```
 
 ### Case 3:
 
 ```
-Initial State:             Goal State:
+Current State:             Goal State:
 -------------             -------------
 | 0 | 1 | 3 |             | 1 | 2 | 3 |
 | 4 | 2 | 5 |             | 4 | 5 | 6 |
 | 7 | 8 | 6 |             | 7 | 8 | 0 |
 -------------             -------------
 Solving using Manhattan distance...
-Expanded 5 nodes.
-Generated 11 nodes.
-Solution is ["Right", "Down", "Right"]
+Expanded 9 nodes.
+Generated 19 nodes.
+Solution is ["Right", "Down", "Right", "Down"]
 
-Initial State:             Goal State:
+Current State:             Goal State:
 -------------             -------------
 | 0 | 1 | 3 |             | 1 | 2 | 3 |
 | 4 | 2 | 5 |             | 4 | 5 | 6 |
 | 7 | 8 | 6 |             | 7 | 8 | 0 |
 -------------             -------------
 Solving using Hamming distance...
-Expanded 4 nodes.
-Generated 10 nodes.
+Expanded 5 nodes.
+Generated 11 nodes.
 Solution is ["Right", "Down", "Right"]
 ```
 
-### Case 4:
+### Case 4: (No solution)
 
 ```
-Initial State:             Goal State:
+Current State:             Goal State:
 -------------             -------------
 | 0 | 3 | 1 |             | 1 | 2 | 3 |
 | 4 | 2 | 5 |             | 4 | 5 | 6 |
 | 7 | 8 | 6 |             | 7 | 8 | 0 |
 -------------             -------------
 Solving using Manhattan distance...
-thread "main" panicked at "Reached a dead end.", src\libcore\option.rs:1038:5
+thread 'main' panicked at 'Reached a dead end.', src\libcore\option.rs:1038:5
+note: Run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
 error: process didn't exit successfully: `target\debug\project_1.exe` (exit code: 101)
 ```
