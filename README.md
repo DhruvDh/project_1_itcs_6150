@@ -1,5 +1,7 @@
 # 8 Puzzle Problem
 
+## Introduction
+
 The 8-puzzle problem is a puzzle invented and popularized by Noyes Palmer Chapman in the 1870s.
 It is played on a 3-by-3 grid with 8 square blocks labeled 1 through 8 and a blank square.
 Your goal is to rearrange the blocks so that they are in order.
@@ -11,6 +13,34 @@ The following shows a sequence of legal moves from an initial board position (le
 4  2  5   =>   4  2  5   =>   4     5   =>   4  5      =>   4  5  6
 7  8  6        7  8  6        7  8  6        7  8  6        7  8
 initial                                                      goal
+```
+
+## How to install and run
+
+First install `rustup` from [here](https://rustup.rs/). `rustup` is the toolchain for a language called `rust`, which this project is written it. Installing it will allow you to run my program.
+
+> If you don't want to install it, I've also included a Windows executable that can be run without any dependencies. Look for `project_1.exe` in the root folder.
+
+Once `rustup` is installed, execute the following commands to run the code -
+
+```
+git clone https://github.com/DhruvDh/project_1_itcs_6150.git
+cd project_1_itcs_6156 && cargo run
+```
+
+If you wish to run the program on custom values of initial and goal state, find `fn main()` inside `src/main.rs` and change this line to reflect the values of initial and goal state you desire -
+
+```rust
+let mut problem_1 = Problem::new(
+        vec![1, 2, 3, 7, 4, 5, 6, 8, 0], // initial state array
+        vec![1, 2, 3, 8, 6, 4, 7, 5, 0], // goal state array
+    );
+```
+
+Change the cost function by changing the argument for the `solve` function call.
+
+```rust
+problem_1.solve("Manhattan"); // any value other than manhattan will use hamming distance as cost function.
 ```
 
 ## Problem Formulation
