@@ -39,8 +39,6 @@ The following shows a sequence of legal moves from an initial board position (le
 initial                                                      goal
 ```
 
-> The documentation for the program can be found here - https://docs.rs/crate/project_1_itcs_6156/0.1.3
-
 ## How to install and run
 
 First install `rustup` from [here](https://rustup.rs/). `rustup` is the toolchain for a language called `rust`, which this project is written it. Installing it will allow you to run my program.
@@ -84,7 +82,7 @@ More detailed information can be found by clicking on the respective struct's na
 
 ## Global Variables
 
-There are no global variables in this implementation. Look at the (documentation)[https://docs.rs/crate/project_1_itcs_6156/0.1.3] for more information.
+There are no global variables in this implementation.
 
 ## Structs
 
