@@ -318,8 +318,6 @@ impl Problem {
         let mut parent = self.state.parent.clone();
         
         while let Some(p) = parent {
-            // println!("{:?}", p);
-            // println!("Cost: {}", p.cost);
             soln.push((*p).kind.clone());
             parent = (*p).parent.clone();
         }
@@ -343,7 +341,6 @@ fn main() {
         vec![1, 2, 3, 8, 6, 4, 7, 5, 0],
     );
 
-    println!("");
     problem_1.solve("Hamming");
     
     let mut problem_2 = Problem::new(
@@ -359,7 +356,6 @@ fn main() {
         vec![3, 2, 1, 8, 0, 4, 7, 5, 6],
     );
 
-    println!("");
     problem_2.solve("Hamming");
 
     let mut problem_3 = Problem::new(
@@ -375,7 +371,6 @@ fn main() {
         vec![1, 2, 3, 4, 5, 6, 7, 8, 0],
     );
 
-    println!("");
     problem_3.solve("Hamming");
     
     let mut problem_4 = Problem::new(
@@ -391,9 +386,7 @@ fn main() {
         vec![1, 2, 3, 4, 5, 6, 7, 8, 0],
     );
 
-    println!("");
     problem_4.solve("Hamming");
-
 }
 
 /// Finds the 2d 3x3 vector indices of a number in a 1d vector of isize. 
