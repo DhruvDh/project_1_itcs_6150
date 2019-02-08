@@ -1,11 +1,11 @@
 [package]
 name = "project_1_itcs_6156"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["dhruvdh <dhruv.dhamani@gmail.com>"]
 edition = "2018"
 description = "Crate for Project 1 done for ITCS 6156 Intelligent Systems at UNCC."
 repository = "https://github.com/DhruvDh/project_1_itcs_6150"
-documentation = "https://docs.rs/crate/project_1_itcs_6156/0.1.0"
+documentation = "https://docs.rs/crate/project_1_itcs_6156/0.1.2"
 readme = "README.md"
 license = "MPL-2.0"
 license-file = "LICENSE"
